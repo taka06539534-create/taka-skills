@@ -1,0 +1,78 @@
+{
+  "title": "新生儿喂养可视化日报",
+  "date": "未记录日期",
+  "summary": [
+    "瓶喂总量 356 ml，其中瓶喂母乳 118 ml、奶粉 238 ml。",
+    "亲喂 6 次，总时长约 155 分钟。",
+    "换尿布口径统计小便 3 次，大便 5 次。",
+    "记录 7 次入睡，但缺少醒来时间，睡眠总时长无法精确计算。"
+  ],
+  "metrics": {
+    "bottle_total_ml": 356,
+    "bottle_breastmilk_ml": 118,
+    "formula_ml": 238,
+    "direct_feeding_count": 6,
+    "direct_total_min": 155,
+    "wet_diapers": 3,
+    "stool_count": 5,
+    "sleep_sessions": 7
+  },
+  "reference": {
+    "bottle_single_ml": {
+      "min": 30,
+      "max": 60,
+      "label": "常见 30-60 ml/次，需结合日龄"
+    },
+    "wet_diapers_day": {
+      "min": 5,
+      "label": "出生 4-5 天后常见至少 5-6 次/日"
+    },
+    "sleep_hours_day": {
+      "min": 14,
+      "max": 17,
+      "label": "0-3 月常见 14-17 小时/日"
+    }
+  },
+  "feedings": [
+    {"time": "03:09", "type": "bottle_breastmilk", "amount_ml": 70, "note": "吐一口奶"},
+    {"time": "06:52", "type": "direct_breastfeeding", "duration_min": 30, "note": "左右各15分"},
+    {"time": "07:07", "type": "formula", "amount_ml": 30},
+    {"time": "09:55", "type": "direct_breastfeeding", "duration_min": 30},
+    {"time": "10:04", "type": "bottle_breastmilk", "amount_ml": 28},
+    {"time": "12:25", "type": "direct_breastfeeding", "duration_min": 10},
+    {"time": "13:28", "type": "direct_breastfeeding", "duration_min": 30},
+    {"time": "13:34", "type": "bottle_breastmilk", "amount_ml": 20},
+    {"time": "13:43", "type": "formula", "amount_ml": 35},
+    {"time": "15:49", "type": "formula", "amount_ml": 68},
+    {"time": "18:21", "type": "direct_breastfeeding", "duration_min": 25},
+    {"time": "18:31", "type": "formula", "amount_ml": 45},
+    {"time": "21:07", "type": "direct_breastfeeding", "duration_min": 30},
+    {"time": "21:24", "type": "formula", "amount_ml": 25},
+    {"time": "22:17", "type": "formula", "amount_ml": 35}
+  ],
+  "diapers": [
+    {"time": "02:00", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "03:14", "urine": false, "stool": true, "note": "黄色糊状，有奶瓣，量大"},
+    {"time": "06:20", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "08:30", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "09:20", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "10:53", "urine": false, "stool": true, "note": "黄色糊状，少量奶瓣，量多"},
+    {"time": "21:24", "urine": true, "stool": true, "note": "黄色糊状，少量奶瓣，量多"},
+    {"time": "21:57", "urine": true, "stool": true, "note": "黄色糊状，少量奶瓣，量中"},
+    {"time": "23:15", "urine": true, "stool": true, "note": "黄色糊状，少量奶瓣，量中"}
+  ],
+  "sleep": [
+    {"start": "03:20", "end": "06:20", "confidence": "estimated"},
+    {"start": "07:23", "end": "08:30", "confidence": "estimated"},
+    {"start": "11:00", "end": "12:25", "confidence": "estimated"},
+    {"start": "14:00", "end": "14:45", "confidence": "estimated"},
+    {"start": "16:03", "end": "17:30", "confidence": "estimated"},
+    {"start": "18:45", "end": "20:00", "confidence": "estimated"},
+    {"start": "22:32", "end": "23:06", "confidence": "estimated"}
+  ],
+  "comparisons": [
+    {"indicator": "瓶喂单次量", "value": "20-70 ml", "reference": "30-60 ml/次需结合日龄", "status": "需观察", "note": "70 ml 和 68 ml 略高于示例参考上沿"},
+    {"indicator": "湿尿布", "value": "换尿布口径统计 3 次", "reference": "出生 4-5 天后常见至少 5-6 次/日", "status": "记录不足", "note": "未写大便的换尿布已按小便计入"},
+    {"indicator": "睡眠总时长", "value": "无法精确计算", "reference": "0-3 月常见 14-17 小时/日", "status": "无法判断", "note": "缺少醒来时间"}
+  ]
+}
