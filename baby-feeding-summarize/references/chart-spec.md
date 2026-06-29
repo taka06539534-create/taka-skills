@@ -1,6 +1,6 @@
 # 可视化报告数据规范
 
-当用户要求“生成图表、SVG、截图、可视化日报、最终 Markdown 产物”时，先把原始记录整理成结构化 JSON，再使用 `scripts/render_visual_report.py` 生成产物。
+处理任何新生儿喂养护理记录时，默认先把原始记录整理成结构化 JSON，再使用 `scripts/render_visual_report.py` 生成文件产物；不要只在聊天中输出文本报告。
 
 ## 产物
 
@@ -44,6 +44,7 @@ python scripts/render_visual_report.py \
   "title": "新生儿喂养可视化日报",
   "date": "6月27日",
   "summary": ["短句概览1", "短句概览2"],
+  "report_markdown": "完整中文报告正文，包含今日概览、喂养分析、排便排尿分析、睡眠推测、观察优先级、信息缺口、统计视图。",
   "metrics": {},
   "reference": {},
   "feedings": [],
@@ -54,6 +55,8 @@ python scripts/render_visual_report.py \
 ```
 
 `date` 只能来自原文或用户明确说明。没有日期时写 `日期未记录`；生成的 Markdown 需要提醒用户补充记录日期，不能使用系统日期或聊天日期代替。脚本会使用该字段生成报告文件夹名。
+
+`report_markdown` 是最终 `index.md` 的正文主体。必须使用 `references/parsing-and-output.md` 的章节顺序生成；不要包含 `## 可视化图表`，该章节由脚本追加到文档最后。
 
 ## metrics
 

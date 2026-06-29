@@ -4,16 +4,17 @@
   "summary": [
     "瓶喂总量 356 ml，其中瓶喂母乳 118 ml、奶粉 238 ml。",
     "亲喂 6 次，总时长约 155 分钟。",
-    "换尿布口径统计小便 3 次，大便 5 次。",
+    "换尿布口径统计小便 7 次，大便 5 次。",
     "记录 7 次入睡，但缺少醒来时间，睡眠总时长无法精确计算。"
   ],
+  "report_markdown": "### 今日概览\n\n- 瓶喂总量 356 ml，其中瓶喂母乳 118 ml、奶粉 238 ml。\n- 亲喂 6 次，总时长约 155 分钟。\n- 换尿布口径统计小便 7 次，大便 5 次。\n\n### 喂养分析\n\n| 状态 | 判断 | 证据 | 优化建议 |\n|---|---|---|---|\n| 较好 | 奶源分类较清楚 | 亲喂、瓶喂母乳、奶粉均可区分 | 继续分开记录 |\n\n### 统计视图\n\n#### 关键数据\n\n| 项目 | 统计结果 | 备注 |\n|---|---:|---|\n| 瓶喂总量 | 356 ml | 不含亲喂换算 |",
   "metrics": {
     "bottle_total_ml": 356,
     "bottle_breastmilk_ml": 118,
     "formula_ml": 238,
     "direct_feeding_count": 6,
     "direct_total_min": 155,
-    "wet_diapers": 3,
+    "wet_diapers": 7,
     "stool_count": 5,
     "sleep_sessions": 7
   },
@@ -51,11 +52,11 @@
     {"time": "22:17", "type": "formula", "amount_ml": 35}
   ],
   "diapers": [
-    {"time": "02:00", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "02:00", "urine": true, "stool": false, "note": "换尿不湿"},
     {"time": "03:14", "urine": false, "stool": true, "note": "黄色糊状，有奶瓣，量大"},
-    {"time": "06:20", "urine": null, "stool": null, "note": "换尿不湿"},
-    {"time": "08:30", "urine": null, "stool": null, "note": "换尿不湿"},
-    {"time": "09:20", "urine": null, "stool": null, "note": "换尿不湿"},
+    {"time": "06:20", "urine": true, "stool": false, "note": "换尿不湿"},
+    {"time": "08:30", "urine": true, "stool": false, "note": "换尿不湿"},
+    {"time": "09:20", "urine": true, "stool": false, "note": "换尿不湿"},
     {"time": "10:53", "urine": false, "stool": true, "note": "黄色糊状，少量奶瓣，量多"},
     {"time": "21:24", "urine": true, "stool": true, "note": "黄色糊状，少量奶瓣，量多"},
     {"time": "21:57", "urine": true, "stool": true, "note": "黄色糊状，少量奶瓣，量中"},
@@ -72,7 +73,7 @@
   ],
   "comparisons": [
     {"indicator": "瓶喂单次量", "value": "20-70 ml", "reference": "30-60 ml/次需结合日龄", "status": "需观察", "note": "70 ml 和 68 ml 略高于示例参考上沿"},
-    {"indicator": "湿尿布", "value": "换尿布口径统计 3 次", "reference": "出生 4-5 天后常见至少 5-6 次/日", "status": "记录不足", "note": "未写大便的换尿布已按小便计入"},
+    {"indicator": "湿尿布", "value": "换尿布口径统计 7 次", "reference": "出生 4-5 天后常见至少 5-6 次/日", "status": "接近参考", "note": "未写大便的换尿布已按小便计入"},
     {"indicator": "睡眠总时长", "value": "无法精确计算", "reference": "0-3 月常见 14-17 小时/日", "status": "无法判断", "note": "缺少醒来时间"}
   ]
 }

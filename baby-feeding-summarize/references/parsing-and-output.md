@@ -142,11 +142,11 @@
 | 07:30 | 母乳 | 左 10 分 / 右 8 分 | 亲喂 18 分钟 |
 | 09:20 | 奶粉 | 60 ml | 与上次喂养间隔约 1 小时 50 分 |
 
-## 可视化 Markdown 产物
+## Markdown 文件产物
 
-当用户要求最终 `.md` 产物包含图表时，使用 `scripts/render_visual_report.py` 生成 Markdown。脚本会新建包含记录日期的报告文件夹，默认入口为该文件夹中的 `index.md`。
+处理任何喂养护理记录时，都使用 `scripts/render_visual_report.py` 生成 Markdown 文件产物。脚本会新建包含记录日期的报告文件夹，默认入口为该文件夹中的 `index.md`。
 
-最终入口至少包含：
+生成结构化 JSON 时，把完整报告正文写入 `report_markdown`。最终入口至少包含：
 
 日期缺失时，在标题后增加提醒；已有明确日期时省略提醒。
 

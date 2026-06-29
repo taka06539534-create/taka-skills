@@ -1,4 +1,4 @@
 interface:
   display_name: "宝宝喂养记录总结"
-  short_description: "解析新生儿每日喂养护理记录，生成中文统计、观察与优化建议"
-  default_prompt: "Use $baby-feeding-summarize to 整理下面的新生儿喂养护理记录，输出中文统计总结。"
+  short_description: "解析新生儿每日喂养护理记录，默认生成含可视化图表的 Markdown 文件报告"
+  default_prompt: "Use $baby-feeding-summarize to 整理下面的新生儿喂养护理记录，默认在当前目录创建包含记录日期的报告文件夹，生成 index.md、structured-data.json、SVG、HTML 和可用时的 PNG；聊天中只返回 index.md 入口路径和简短说明。"

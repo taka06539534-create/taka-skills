@@ -1,19 +1,19 @@
 ---
 name: baby-feeding-summarize
-description: Use when the user provides Chinese newborn feeding or baby care records from a nanny, family member, or WeChat group and needs a daily Chinese summary of breastfeeding, bottle-fed breastmilk, formula, diapers, stool, urine, sleep, temperature, or abnormalities.
+description: Use when the user provides Chinese newborn feeding or baby care records from a nanny, family member, or WeChat group and needs a daily file-based Chinese report with Markdown, visualization, breastfeeding, bottle-fed breastmilk, formula, diapers, stool, urine, sleep, temperature, or abnormalities.
 ---
 
 # 新生儿喂养记录总结
 
 ## 概览
 
-将月嫂、家人或护理人员发来的中文半结构化记录整理成每日喂养护理总结。输出面向中文家长，默认先给状态判断和建议，再把统计视图放在文档最后；医疗相关内容只做风险提醒，不能替代医生诊断。
+将月嫂、家人或护理人员发来的中文半结构化记录整理成每日喂养护理报告。默认必须生成文件产物：新建报告文件夹、写入 `index.md`、结构化数据和可视化图表；聊天回复只提供简短完成说明和入口路径。医疗相关内容只做风险提醒，不能替代医生诊断。
 
 ## 何时使用
 
 - 用户粘贴新生儿或婴儿每日喂养、护理、换尿不湿、睡眠、体温、异常等原始记录。
 - 用户要求统计奶量、亲喂时长、喂养间隔、大小便次数、睡眠分布或护理要点。
-- 用户明确要求生成图表、SVG、截图、可视化日报，或将可视化图表放入最终 Markdown 产物。
+- 用户要求生成日报、完整报告、总结、统计、图表、SVG、截图、可视化日报，或将可视化图表放入最终 Markdown 产物。
 - 原文来自微信群、月嫂日报、育儿记录表，格式可能不完整或口语化。
 
 ## 何时不要使用
@@ -35,12 +35,13 @@ description: Use when the user provides Chinese newborn feeding or baby care rec
    - 类型不清时标为“未明确”，不要自动归入奶粉或母乳。
 6. 分析排便排尿：从“换尿不湿/换尿布/换纸尿裤”和“大便”两类记录合并判断次数、时间点、颜色、性状、量。凡是换尿布相关描述，未明确写“大便有/拉了/便便/臭臭”时，按小便 1 次计入；明确写大便有时计大便，是否同时计小便只看原文是否明确有尿/小便/尿布湿。
 7. 推测睡眠：只根据记录计算。只有入睡没有醒来、只有睡姿没有时长、或缺少结束时间时，说明无法精确计算。
-8. 先输出“今日概览”和分析判断，再把趋势、参考区间对比、关键数据、时间线集中放入文档最后的“统计视图”。详细字段口径和模板见 `references/parsing-and-output.md`；需要做常见参考区间对比时读取 `references/reference-ranges.md`。
-9. 用户要求图表、SVG、截图或最终 Markdown 报告时，进入“可视化报告模式”：读取 `references/chart-spec.md`，整理结构化 JSON，并运行 `scripts/render_visual_report.py`。脚本必须在父级输出目录下新建包含记录日期的报告文件夹，把所有结果文件放入该文件夹，并以 `index.md` 作为默认访问入口。
+8. 始终进入文件产物模式，不要走“只在聊天中输出文本报告”的分支。先按 `references/parsing-and-output.md` 写出完整中文报告正文，再把这份正文放入结构化 JSON 的 `report_markdown` 字段。
+9. 读取 `references/chart-spec.md`，整理结构化 JSON，并运行 `scripts/render_visual_report.py`。脚本必须在父级输出目录下新建包含记录日期的报告文件夹，把所有结果文件放入该文件夹，并以 `index.md` 作为默认访问入口。
+10. 聊天回复只输出简短完成说明、`index.md` 路径和必要提醒；不要把完整报告正文直接贴在聊天中。
 
 ## 输出要求
 
-使用中文 Markdown，默认包含以下小节，顺序不要改变。优先使用表格、列表和短句；连续正文段落不要超过 4 行。
+`index.md` 使用中文 Markdown，默认包含以下小节，顺序不要改变。优先使用表格、列表和短句；连续正文段落不要超过 4 行。
 
 1. `### 今日概览`
 2. `### 喂养分析`
@@ -60,20 +61,21 @@ description: Use when the user provides Chinese newborn feeding or baby care rec
 - `信息缺口` 中优先列出缺失日期；不要擅自补写为今天、昨天或系统日期。
 - `统计视图` 是最后一个章节，集中展示趋势速览、参考区间对比、关键数据和喂养时间线；其中参考区间对比必须标明“仅作常见参考，需结合日龄、体重、医嘱、喂养方式和宝宝状态”。
 
-## 可视化报告模式
+## 文件产物模式
 
-当用户明确要求“图表”“SVG”“截图”“可视化”“最终 `.md` 产物”时：
+任何可分析的喂养护理记录都默认进入文件产物模式，即使用户只说“总结”“分析”“完整报告”，也必须生成 `.md` 和可视化产物。
 
-1. 先按 `references/chart-spec.md` 生成结构化 JSON。不要把未经确认的推测写成精确值。
-2. 如果原文没有日期，JSON 的 `date` 写为 `日期未记录`，最终 Markdown 必须提醒用户补充记录日期。
-3. 运行 `scripts/render_visual_report.py --input <json> --output-dir <parent-dir> --basename <name> --screenshot auto`。`--output-dir` 是父级输出目录；脚本会自动创建报告文件夹，不要把结果文件散放在父目录。
-4. 报告文件夹命名必须包含记录日期，推荐 `<记录日期>-<basename>`；缺失日期时使用 `日期未记录-<basename>`；同名已存在时追加序号，避免覆盖旧报告。
-5. 报告文件夹内至少包含 `index.md`、`structured-data.json`、`<name>.svg`、`<name>.html`，截图可用时还包含 `<name>.png`；默认把 `index.md` 作为访问入口。
-6. 最终 Markdown 只保留一个 `## 可视化图表` 章节，不要单独创建 `## 截图` 章节；`## 可视化图表` 作为统计/可视化视图放在文档最后。
-7. 如果脚本生成了 PNG 截图，在 `## 可视化图表` 中嵌入 PNG，并在同一小节提供 SVG 源文件链接。
-8. 如果没有 PNG 截图，在 `## 可视化图表` 中直接嵌入 SVG，并说明缺少截图能力。
-9. 如果脚本未生成 PNG，但浏览器/Chrome 插件可用，打开报告文件夹中的 `<name>.html`，截图保存为同文件夹的 `<name>.png`，然后重新运行脚本 `--screenshot never` 刷新 `index.md`。
-10. 如果无法截图，不要阻塞任务；说明缺少浏览器截图能力，并保留 SVG、HTML、Markdown 产物。
+1. 先按输出要求生成完整中文报告正文，放入 JSON 的 `report_markdown` 字段；不要把完整正文作为聊天主回复。
+2. 按 `references/chart-spec.md` 生成结构化 JSON。不要把未经确认的推测写成精确值。
+3. 如果原文没有日期，JSON 的 `date` 写为 `日期未记录`，最终 Markdown 必须提醒用户补充记录日期。
+4. 运行 `scripts/render_visual_report.py --input <json> --output-dir <parent-dir> --basename <name> --screenshot auto`。`--output-dir` 是父级输出目录；脚本会自动创建报告文件夹，不要把结果文件散放在父目录。
+5. 报告文件夹命名必须包含记录日期，推荐 `<记录日期>-<basename>`；缺失日期时使用 `日期未记录-<basename>`；同名已存在时追加序号，避免覆盖旧报告。
+6. 报告文件夹内至少包含 `index.md`、`structured-data.json`、`<name>.svg`、`<name>.html`，截图可用时还包含 `<name>.png`；默认把 `index.md` 作为访问入口。
+7. `index.md` 先展示完整中文报告正文，最后只保留一个 `## 可视化图表` 章节，不要单独创建 `## 截图` 章节。
+8. 如果脚本生成了 PNG 截图，在 `## 可视化图表` 中嵌入 PNG，并在同一小节提供 SVG 源文件链接。
+9. 如果没有 PNG 截图，在 `## 可视化图表` 中直接嵌入 SVG，并说明缺少截图能力。
+10. 如果脚本未生成 PNG，但浏览器/Chrome 插件可用，打开报告文件夹中的 `<name>.html`，截图保存为同文件夹的 `<name>.png`，然后重新运行脚本 `--screenshot never` 刷新 `index.md`。
+11. 如果无法截图，不要阻塞任务；说明缺少浏览器截图能力，并保留 SVG、HTML、Markdown 产物。
 
 不要把 Chrome、Browser、Playwright 等某个平台的工具假设为通用能力；只有当前环境明确可用时才使用。
 
@@ -103,8 +105,9 @@ description: Use when the user provides Chinese newborn feeding or baby care rec
 创建或更新本 skill 后，至少用 `evals/` 中的用例检查：
 
 - 普通完整记录能输出所有指定小节。
+- 普通完整记录默认生成报告文件夹和 `index.md`，不得只在聊天中输出文本报告。
 - 缺失、占位符和歧义记录不会被编造。
 - 输出先给状态判断和优化建议，最后用统计视图集中展示趋势表、参考区间对比、关键数据和时间线。
-- 可视化报告模式能生成 SVG，并在截图能力可用时生成 PNG，最终 Markdown 能嵌入图表。
-- 每次可视化报告运行都会新建包含记录日期的报告文件夹，并以 `index.md` 作为默认访问入口。
+- 文件产物模式能生成 SVG，并在截图能力可用时生成 PNG，最终 Markdown 能嵌入图表。
+- 每次运行都会新建包含记录日期的报告文件夹，并以 `index.md` 作为默认访问入口。
 - 非记录类育儿或产品需求不会误触发本 skill。

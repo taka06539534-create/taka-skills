@@ -434,6 +434,7 @@ def screenshot_with_browser(html_path: Path, png_path: Path) -> tuple[bool, str]
 def write_markdown(data: dict[str, Any], md_path: Path, svg_path: Path, png_path: Path | None, note: str) -> None:
     title = data.get("title", "新生儿喂养可视化日报")
     date = str(data.get("date", "")).strip()
+    report_markdown = str(data.get("report_markdown", "")).strip()
     lines = [
         f"# {title}",
         "",
@@ -441,6 +442,11 @@ def write_markdown(data: dict[str, Any], md_path: Path, svg_path: Path, png_path
     if not date or date in {"日期未记录", "未记录日期", "未提供", "未识别"}:
         lines.extend([
             "> 提醒：这份记录未写明日期，请补充记录日期，便于判断是否跨日并做更准确的参考区间对比。",
+            "",
+        ])
+    if report_markdown:
+        lines.extend([
+            report_markdown,
             "",
         ])
     lines.extend([

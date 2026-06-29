@@ -2,7 +2,7 @@
 
 ## Prompt
 
-使用 `baby-feeding-summarize` 生成可视化报告。要求每次创建的所有结果文件都放进新建文件夹，文件夹名称包含记录日期，并默认通过 `.md` 文件访问。
+使用 `baby-feeding-summarize` 整理下面的新生儿喂养护理记录。用户没有额外要求图表或 `.md`，但 skill 仍应默认生成文件产物。
 
 ## Input
 
@@ -17,8 +17,8 @@
 
 ## 成功标准
 
-- 可视化模式运行脚本时，`--output-dir` 表示父级输出目录，不直接散放结果文件。
+- 默认必须运行脚本；`--output-dir` 表示父级输出目录，不直接散放结果文件。
 - 脚本每次创建一个新的报告文件夹，文件夹名包含记录日期，例如 `6月29日-baby-feeding-report`；同名已存在时追加序号，避免覆盖。
 - 报告文件夹内至少包含 `index.md`、`baby-feeding-report.svg`、`baby-feeding-report.html`、`structured-data.json`，如果截图可用还包含 `baby-feeding-report.png`。
-- `index.md` 是默认访问入口，正文中引用同文件夹内的 PNG 或 SVG 相对路径。
+- `index.md` 是默认访问入口，正文中包含完整中文报告，并引用同文件夹内的 PNG 或 SVG 相对路径。
 - 缺失日期时，文件夹名使用 `日期未记录` 或同义占位，并在 `index.md` 中继续提醒用户补充日期。
