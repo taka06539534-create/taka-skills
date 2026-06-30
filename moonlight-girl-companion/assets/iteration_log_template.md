@@ -14,6 +14,14 @@
 
 是否达到 Done Criteria：
 
+发布包目录：
+
+文章文件：
+
+封面图片：
+
+章节图片：
+
 ## 第 1 轮
 
 本轮目标：
@@ -25,6 +33,8 @@
 Hard Gate 结果：
 
 Soft Gate 结果：
+
+真实素材结果：
 
 质量评分：
 
@@ -48,6 +58,8 @@ Hard Gate 结果：
 
 Soft Gate 结果：
 
+真实素材结果：
+
 质量评分：
 
 主要问题：
@@ -69,6 +81,8 @@ Soft Gate 结果：
 Hard Gate 结果：
 
 Soft Gate 结果：
+
+真实素材结果：
 
 质量评分：
 
@@ -92,6 +106,8 @@ Hard Gate 结果：
 
 Soft Gate 结果：
 
+真实素材结果：
+
 质量评分：
 
 主要问题：
@@ -113,6 +129,8 @@ Soft Gate 结果：
 Hard Gate 结果：
 
 Soft Gate 结果：
+
+真实素材结果：
 
 质量评分：
 

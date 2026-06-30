@@ -1,0 +1,47 @@
+{
+  "title": "",
+  "description": "",
+  "deep_night_message": "",
+  "interaction_topic": "",
+  "more_articles_entry": "",
+  "cover_image": "cover.png",
+  "article_file": "article.md",
+  "target_platform": "wechat_official_account",
+  "aspect_ratio": "16:9",
+  "chapter_count": 5,
+  "illustrations": [
+    {
+      "chapter": "01",
+      "title": "",
+      "path": "images/chapter-01.png",
+      "prompt_file": "prompts/illustration_prompts.md"
+    },
+    {
+      "chapter": "02",
+      "title": "",
+      "path": "images/chapter-02.png",
+      "prompt_file": "prompts/illustration_prompts.md"
+    },
+    {
+      "chapter": "03",
+      "title": "",
+      "path": "images/chapter-03.png",
+      "prompt_file": "prompts/illustration_prompts.md"
+    },
+    {
+      "chapter": "04",
+      "title": "",
+      "path": "images/chapter-04.png",
+      "prompt_file": "prompts/illustration_prompts.md"
+    },
+    {
+      "chapter": "05",
+      "title": "",
+      "path": "images/chapter-05.png",
+      "prompt_file": "prompts/illustration_prompts.md"
+    }
+  ],
+  "review_report": "review_report.md",
+  "iteration_log": "iteration_log.md",
+  "final_status": "PASS or FAIL"
+}
